@@ -9,8 +9,9 @@
         <PackageDescription>Generic list with events and duplicate and null item checking. Based in code by CodeProject: https://www.codeproject.com/Articles/31539/List-With-Events</PackageDescription>
         <RepositoryUrl>https://github.com/andrefmello91/EList</RepositoryUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.1.1</PackageVersion>
-        <PackageReleaseNotes>Updated git action.</PackageReleaseNotes>
+        <PackageVersion>0.1.2</PackageVersion>
+        <PackageReleaseNotes>Added EList creation extension</PackageReleaseNotes>
+        <PackageProjectUrl>https://github.com/andrefmello91/EList</PackageProjectUrl>
     </PropertyGroup>
 
 </Project>
