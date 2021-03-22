@@ -32,5 +32,5 @@ jobs:
       uses: Rebel028/publish-nuget@2.6.1  
       with:   
        PROJECT_FILE_PATH: andrefmello91.EList/andrefmello91.EList.csproj
-       NUGET_SOURCE: https://nuget.pkg.github.com
+       NUGET_SOURCE: https://nuget.pkg.github.com/andrefmello91
        NUGET_KEY: ${{secrets.NUGET_GITHUB_KEY}}
