@@ -3,14 +3,16 @@
     <PropertyGroup>
         <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
         <PackageId>andrefmello91.EList</PackageId>
-        <Version>1.0.0</Version>
+        <Version>1.0.2</Version>
         <LangVersion>9.0</LangVersion>
         <Authors>andrefmello91</Authors>
         <PackageDescription>Generic list with events and duplicate and null item checking. Based in code by CodeProject: https://www.codeproject.com/Articles/31539/List-With-Events</PackageDescription>
         <RepositoryUrl>https://github.com/andrefmello91/EList</RepositoryUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>1.0.0</PackageVersion>
-        <PackageReleaseNotes>Added EList creation extension</PackageReleaseNotes>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+        <PackageVersion>1.0.2</PackageVersion>
+        <PackageReleaseNotes>Added documentation to package.</PackageReleaseNotes>
         <PackageProjectUrl>https://github.com/andrefmello91/EList</PackageProjectUrl>
     </PropertyGroup>
 
