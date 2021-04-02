@@ -54,14 +54,14 @@ namespace andrefmello91.EList
 		/// <inheritdoc cref="List{T}.Add" />
 		/// <param name="raiseEvents">Raise events after modifying this list?</param>
 		/// <param name="sort">Sort this list after modifying this list?</param>
-		bool Add(T item, bool raiseEvents = true, bool sort = true);
+		bool Add(T? item, bool raiseEvents = true, bool sort = true);
 
 		/// <returns>
 		///		The number of items added to this list.
 		/// </returns>
 		/// <inheritdoc cref="List{T}.AddRange" />
 		/// <inheritdoc cref="Add" />
-		int AddRange(IEnumerable<T>? collection, bool raiseEvents = true, bool sort = true);
+		int AddRange(IEnumerable<T?>? collection, bool raiseEvents = true, bool sort = true);
 
 		//------------------------------------------------------------------
 		/// <inheritdoc cref="List{T}.Clear" />
@@ -71,7 +71,7 @@ namespace andrefmello91.EList
 		//------------------------------------------------------------------
 		/// <inheritdoc cref="List{T}.Remove" />
 		/// <inheritdoc cref="Add" />
-		bool Remove(T item, bool raiseEvents = true, bool sort = true);
+		bool Remove(T? item, bool raiseEvents = true, bool sort = true);
 
 		/// <returns>
 		///		The number of items removed from this list.
@@ -85,7 +85,7 @@ namespace andrefmello91.EList
 		/// </summary>
 		/// <param name="collection">The collection of items to remove.</param>
 		/// <inheritdoc cref="RemoveAll" />
-		int RemoveRange(IEnumerable<T>? collection, bool raiseEvents = true, bool sort = true);
+		int RemoveRange(IEnumerable<T?>? collection, bool raiseEvents = true, bool sort = true);
 
 		/// <inheritdoc cref="List{T}.Sort()" />
 		/// <inheritdoc cref="Add(T, bool, bool)" />

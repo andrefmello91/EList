@@ -15,7 +15,7 @@ namespace andrefmello91.EList
 		/// </summary>
 		/// <inheritdoc cref="IEList{T}" />
 		/// <param name="collection">The collection to transform.</param>
-		public static EList<T>? ToEList<T>(this IEnumerable<T>? collection)
+		public static EList<T>? ToEList<T>(this IEnumerable<T?>? collection)
 			where T : IEquatable<T>, IComparable<T> =>
 			collection is null
 				? null

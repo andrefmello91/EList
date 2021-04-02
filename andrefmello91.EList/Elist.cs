@@ -91,15 +91,27 @@ namespace andrefmello91.EList
 		///     Create a new <see cref="EList{T}" /> from a <paramref name="collection" />.
 		/// </summary>
 		/// <inheritdoc cref="EList{T}(bool, bool)"/>
-		public EList(IEnumerable<T> collection, bool allowDuplicates = false, bool allowNull = false)
-			: this(allowDuplicates, allowNull) =>
-			AddRange(collection, false, false);
+		public EList(IEnumerable<T?> collection, bool allowDuplicates = false, bool allowNull = false)
+			: this(allowDuplicates, allowNull)
+		{
+			// Check null items
+			var toAdd = (allowNull
+				? collection
+				: collection.Where(t => t is not null)).ToList();
+			
+			// Check duplicates
+			if (!allowDuplicates)
+				toAdd = toAdd.Distinct().ToList();
+			
+			AddRange(toAdd, false, false);
+		}
 
 		#endregion
 
 		#region  Methods
 
-		public bool Add(T item, bool raiseEvents = true, bool sort = true)
+		/// <inheritdoc />
+		public bool Add(T? item, bool raiseEvents = true, bool sort = true)
 		{
 			if (!AllowDuplicates && Contains(item) || !AllowNull && item is null)
 				return false;
@@ -118,28 +130,22 @@ namespace andrefmello91.EList
 			return true;
 		}
 
-		public int AddRange(IEnumerable<T>? collection, bool raiseEvents = true, bool sort = true)
+		/// <inheritdoc />
+		public int AddRange(IEnumerable<T?>? collection, bool raiseEvents = true, bool sort = true)
 		{
 			if (collection is null || !collection.Any())
 				return 0;
 
-			// Add each permitted item
-			var added = collection.Where(item => Add(item, false, false)).ToList();
+			// Check null items
+			var added = (AllowNull
+				? collection
+				: collection.Where(t => t is not null)).ToList();
+			
+			// Check duplicates
+			if (!AllowDuplicates)
+				added = added.Distinct().ToList();
 
-			//// Check duplicates
-			//var toAdd =
-			//(
-			//	AllowDuplicates
-			//		? collection
-			//		: collection.Distinct().Where(t => !Contains(t))
-			//).ToList();
-
-			//// Check null
-			//toAdd = AllowNull
-			//	? toAdd
-			//	: toAdd.Where(t => !(t is null)).ToList();
-
-			//base.AddRange(toAdd);
+			base.AddRange(added);
 
 			if (raiseEvents)
 			{
@@ -153,6 +159,7 @@ namespace andrefmello91.EList
 			return added.Count;
 		}
 
+		/// <inheritdoc />
 		public void Clear(bool raiseEvents = true)
 		{
 			// Get the initial collection
@@ -167,7 +174,8 @@ namespace andrefmello91.EList
 			RaiseRangeEvent(RangeRemoved, list);
 		}
 
-		public bool Remove(T item, bool raiseEvents = true, bool sort = true)
+		/// <inheritdoc />
+		public bool Remove(T? item, bool raiseEvents = true, bool sort = true)
 		{
 			var index = IndexOf(item);
 
@@ -186,6 +194,7 @@ namespace andrefmello91.EList
 			return true;
 		}
 
+		/// <inheritdoc />
 		public int RemoveAll(Predicate<T> match, bool raiseEvents = true, bool sort = true)
 		{
 			// Get the items
@@ -205,11 +214,13 @@ namespace andrefmello91.EList
 			return count;
 		}
 
-		public int RemoveRange(IEnumerable<T>? collection, bool raiseEvents = true, bool sort = true) =>
+		/// <inheritdoc />
+		public int RemoveRange(IEnumerable<T?>? collection, bool raiseEvents = true, bool sort = true) =>
 			collection is null || !collection.Any()
 				? 0
 				: RemoveAll(collection.Contains, raiseEvents, sort);
 
+		/// <inheritdoc />
 		public void Sort(bool raiseEvents = true)
 		{
 			base.Sort();
@@ -218,6 +229,7 @@ namespace andrefmello91.EList
 				RaiseSortEvent(ListSorted);
 		}
 
+		/// <inheritdoc />
 		public void Sort(IComparer<T> comparer, bool raiseEvents = true)
 		{
 			base.Sort(comparer);
