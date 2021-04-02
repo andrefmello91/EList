@@ -91,20 +91,9 @@ namespace andrefmello91.EList
 		///     Create a new <see cref="EList{T}" /> from a <paramref name="collection" />.
 		/// </summary>
 		/// <inheritdoc cref="EList{T}(bool, bool)"/>
-		public EList(IEnumerable<T?> collection, bool allowDuplicates = false, bool allowNull = false)
-			: this(allowDuplicates, allowNull)
-		{
-			// Check null items
-			var toAdd = (allowNull
-				? collection
-				: collection.Where(t => t is not null)).ToList();
-			
-			// Check duplicates
-			if (!allowDuplicates)
-				toAdd = toAdd.Distinct().ToList();
-			
-			AddRange(toAdd, false, false);
-		}
+		public EList(IEnumerable<T> collection, bool allowDuplicates = false, bool allowNull = false)
+			: this(allowDuplicates, allowNull) =>
+			AddRange(collection, false, false);
 
 		#endregion
 
@@ -136,16 +125,8 @@ namespace andrefmello91.EList
 			if (collection is null || !collection.Any())
 				return 0;
 
-			// Check null items
-			var added = (AllowNull
-				? collection
-				: collection.Where(t => t is not null)).ToList();
-			
-			// Check duplicates
-			if (!AllowDuplicates)
-				added = added.Distinct().ToList();
-
-			base.AddRange(added);
+			// Add each permitted item
+			var added = collection.Where(item => Add(item, false, false)).ToList();
 
 			if (raiseEvents)
 			{
@@ -215,7 +196,7 @@ namespace andrefmello91.EList
 		}
 
 		/// <inheritdoc />
-		public int RemoveRange(IEnumerable<T?>? collection, bool raiseEvents = true, bool sort = true) =>
+		public int RemoveRange(IEnumerable<T>? collection, bool raiseEvents = true, bool sort = true) =>
 			collection is null || !collection.Any()
 				? 0
 				: RemoveAll(collection.Contains, raiseEvents, sort);
