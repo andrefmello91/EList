@@ -9,43 +9,10 @@ namespace andrefmello91.EList
 	///     Extended list class with events. Implementation by CodeProject:
 	///     <para>https://www.codeproject.com/Articles/31539/List-With-Events</para>
 	/// </summary>
-	/// <inheritdoc cref="IEList{T}"/>
+	/// <inheritdoc cref="IEList{T}" />
 	public class EList<T> : List<T>, IEList<T>
 		where T : IEquatable<T>, IComparable<T>
 	{
-		#region Events
-
-		/// <summary>
-		///     Event to run when the list count changes.
-		/// </summary>
-		public event EventHandler<CountChangedEventArgs>? CountChanged;
-
-		/// <summary>
-		///     Event to run when an item is added.
-		/// </summary>
-		public event EventHandler<ItemEventArgs<T>>? ItemAdded;
-
-		/// <summary>
-		///     Event to run when an item is removed.
-		/// </summary>
-		public event EventHandler<ItemEventArgs<T>>? ItemRemoved;
-
-		/// <summary>
-		///     Event to run when a range of items is added.
-		/// </summary>
-		public event EventHandler<RangeEventArgs<T>>? RangeAdded;
-
-		/// <summary>
-		///     Event to run when a range of items is removed.
-		/// </summary>
-		public event EventHandler<RangeEventArgs<T>>? RangeRemoved;
-
-		/// <summary>
-		///     Event to run when the list is sorted.
-		/// </summary>
-		public event EventHandler? ListSorted;
-
-		#endregion
 
 		#region Properties
 
@@ -69,9 +36,9 @@ namespace andrefmello91.EList
 
 		#region Constructors
 
-		/// <inheritdoc cref="EList{T}(bool, bool)"/>
+		/// <inheritdoc cref="EList{T}(bool, bool)" />
 		public EList()
-			: this (false)
+			: this(false)
 		{
 		}
 
@@ -81,7 +48,6 @@ namespace andrefmello91.EList
 		/// <param name="allowDuplicates">Allow duplicate items in this list?</param>
 		/// <param name="allowNull">Allow null items in this list?</param>
 		public EList(bool allowDuplicates = false, bool allowNull = false)
-			: base()
 		{
 			AllowDuplicates = allowDuplicates;
 			AllowNull       = allowNull;
@@ -90,14 +56,56 @@ namespace andrefmello91.EList
 		/// <summary>
 		///     Create a new <see cref="EList{T}" /> from a <paramref name="collection" />.
 		/// </summary>
-		/// <inheritdoc cref="EList{T}(bool, bool)"/>
+		/// <inheritdoc cref="EList{T}(bool, bool)" />
 		public EList(IEnumerable<T> collection, bool allowDuplicates = false, bool allowNull = false)
 			: this(allowDuplicates, allowNull) =>
 			AddRange(collection, false, false);
 
 		#endregion
 
-		#region  Methods
+		#region Methods
+
+		/// <summary>
+		///     Raise the count event.
+		/// </summary>
+		private void RaiseCountEvent(EventHandler<CountChangedEventArgs>? eventHandler)
+		{
+			// Copy to a temporary variable to be thread-safe (MSDN).
+			var tmp = eventHandler;
+			tmp?.Invoke(this, new CountChangedEventArgs(Count));
+		}
+
+		/// <summary>
+		///     Raise the item event.
+		/// </summary>
+		private void RaiseItemEvent(EventHandler<ItemEventArgs<T>>? eventHandler, T item, int? index = null)
+		{
+			// Copy to a temporary variable to be thread-safe (MSDN).
+			var tmp = eventHandler;
+			tmp?.Invoke(this, new ItemEventArgs<T>(item, index ?? Count - 1));
+		}
+
+		/// <summary>
+		///     Raise the range event.
+		/// </summary>
+		private void RaiseRangeEvent(EventHandler<RangeEventArgs<T>>? eventHandler, IEnumerable<T> collection)
+		{
+			// Copy to a temporary variable to be thread-safe (MSDN).
+			var tmp = eventHandler;
+			tmp?.Invoke(this, new RangeEventArgs<T>(collection));
+		}
+
+		/// <summary>
+		///     Raise the sort event.
+		/// </summary>
+		private void RaiseSortEvent(EventHandler? eventHandler)
+		{
+			// Copy to a temporary variable to be thread-safe (MSDN).
+			var tmp = eventHandler;
+			tmp?.Invoke(this, new EventArgs());
+		}
+
+		#region Interface Implementations
 
 		/// <inheritdoc />
 		public bool Add(T? item, bool raiseEvents = true, bool sort = true)
@@ -112,7 +120,7 @@ namespace andrefmello91.EList
 				RaiseCountEvent(CountChanged);
 				RaiseItemEvent(ItemAdded, item);
 			}
-			
+
 			if (sort)
 				Sort(raiseEvents);
 
@@ -219,45 +227,41 @@ namespace andrefmello91.EList
 				RaiseSortEvent(ListSorted);
 		}
 
-		/// <summary>
-		///     Raise the count event.
-		/// </summary>
-		private void RaiseCountEvent(EventHandler<CountChangedEventArgs>? eventHandler)
-		{
-			// Copy to a temporary variable to be thread-safe (MSDN).
-			var tmp = eventHandler;
-			tmp?.Invoke(this, new CountChangedEventArgs(Count));
-		}
+		#endregion
+
+		#endregion
+
+		#region Events
 
 		/// <summary>
-		///     Raise the item event.
+		///     Event to run when the list count changes.
 		/// </summary>
-		private void RaiseItemEvent(EventHandler<ItemEventArgs<T>>? eventHandler, T item, int? index = null)
-		{
-			// Copy to a temporary variable to be thread-safe (MSDN).
-			var tmp = eventHandler;
-			tmp?.Invoke(this, new ItemEventArgs<T>(item, index ?? Count - 1));
-		}
+		public event EventHandler<CountChangedEventArgs>? CountChanged;
 
 		/// <summary>
-		///     Raise the range event.
+		///     Event to run when an item is added.
 		/// </summary>
-		private void RaiseRangeEvent(EventHandler<RangeEventArgs<T>>? eventHandler, IEnumerable<T> collection)
-		{
-			// Copy to a temporary variable to be thread-safe (MSDN).
-			var tmp = eventHandler;
-			tmp?.Invoke(this, new RangeEventArgs<T>(collection));
-		}
+		public event EventHandler<ItemEventArgs<T>>? ItemAdded;
 
 		/// <summary>
-		///     Raise the sort event.
+		///     Event to run when an item is removed.
 		/// </summary>
-		private void RaiseSortEvent(EventHandler? eventHandler)
-		{
-			// Copy to a temporary variable to be thread-safe (MSDN).
-			var tmp = eventHandler;
-			tmp?.Invoke(this, new EventArgs());
-		}
+		public event EventHandler<ItemEventArgs<T>>? ItemRemoved;
+
+		/// <summary>
+		///     Event to run when a range of items is added.
+		/// </summary>
+		public event EventHandler<RangeEventArgs<T>>? RangeAdded;
+
+		/// <summary>
+		///     Event to run when a range of items is removed.
+		/// </summary>
+		public event EventHandler<RangeEventArgs<T>>? RangeRemoved;
+
+		/// <summary>
+		///     Event to run when the list is sorted.
+		/// </summary>
+		public event EventHandler? ListSorted;
 
 		#endregion
 

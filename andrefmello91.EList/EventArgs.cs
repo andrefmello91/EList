@@ -9,6 +9,7 @@ namespace andrefmello91.EList
 	/// </summary>
 	public class ItemEventArgs<T> : EventArgs
 	{
+
 		#region Properties
 
 		/// <summary>
@@ -33,6 +34,7 @@ namespace andrefmello91.EList
 		}
 
 		#endregion
+
 	}
 
 	/// <summary>
@@ -40,6 +42,7 @@ namespace andrefmello91.EList
 	/// </summary>
 	public class RangeEventArgs<T> : EventArgs
 	{
+
 		#region Properties
 
 		/// <summary>
@@ -55,6 +58,7 @@ namespace andrefmello91.EList
 		public RangeEventArgs(IEnumerable<T> collection) => ItemCollection = collection.ToList();
 
 		#endregion
+
 	}
 
 	/// <summary>
@@ -62,6 +66,7 @@ namespace andrefmello91.EList
 	/// </summary>
 	public class CountChangedEventArgs : EventArgs
 	{
+
 		#region Properties
 
 		/// <summary>
@@ -77,5 +82,6 @@ namespace andrefmello91.EList
 		public CountChangedEventArgs(int count) => Count = count;
 
 		#endregion
+
 	}
 }
