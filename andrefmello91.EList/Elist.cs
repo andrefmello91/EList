@@ -136,7 +136,7 @@ namespace andrefmello91.EList
 		{
 			// Copy to a temporary variable to be thread-safe (MSDN).
 			var tmp = eventHandler;
-			tmp?.Invoke(this, new EventArgs());
+			tmp?.Invoke(this, EventArgs.Empty);
 		}
 
 		/// <inheritdoc />
