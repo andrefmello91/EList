@@ -64,8 +64,6 @@ namespace andrefmello91.EList
 
 		#endregion
 
-		#region Events
-
 		/// <summary>
 		///     Event to run when the list count changes.
 		/// </summary>
@@ -95,8 +93,6 @@ namespace andrefmello91.EList
 		///     Event to run when the list is sorted.
 		/// </summary>
 		event EventHandler ListSorted;
-
-		#endregion
 
 		//---------------------------------------------------------------
 		//------------------------------------------------------------------
