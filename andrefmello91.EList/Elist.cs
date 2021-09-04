@@ -34,6 +34,40 @@ namespace andrefmello91.EList
 
 		#endregion
 
+		#region Events
+
+		/// <summary>
+		///     Event to run when the list count changes.
+		/// </summary>
+		public event EventHandler<CountChangedEventArgs>? CountChanged;
+
+		/// <summary>
+		///     Event to run when an item is added.
+		/// </summary>
+		public event EventHandler<ItemEventArgs<T>>? ItemAdded;
+
+		/// <summary>
+		///     Event to run when an item is removed.
+		/// </summary>
+		public event EventHandler<ItemEventArgs<T>>? ItemRemoved;
+
+		/// <summary>
+		///     Event to run when the list is sorted.
+		/// </summary>
+		public event EventHandler? ListSorted;
+
+		/// <summary>
+		///     Event to run when a range of items is added.
+		/// </summary>
+		public event EventHandler<RangeEventArgs<T>>? RangeAdded;
+
+		/// <summary>
+		///     Event to run when a range of items is removed.
+		/// </summary>
+		public event EventHandler<RangeEventArgs<T>>? RangeRemoved;
+
+		#endregion
+
 		#region Constructors
 
 		/// <inheritdoc cref="EList{T}(bool, bool)" />
@@ -226,36 +260,6 @@ namespace andrefmello91.EList
 		}
 
 		#endregion
-
-		/// <summary>
-		///     Event to run when the list count changes.
-		/// </summary>
-		public event EventHandler<CountChangedEventArgs>? CountChanged;
-
-		/// <summary>
-		///     Event to run when an item is added.
-		/// </summary>
-		public event EventHandler<ItemEventArgs<T>>? ItemAdded;
-
-		/// <summary>
-		///     Event to run when an item is removed.
-		/// </summary>
-		public event EventHandler<ItemEventArgs<T>>? ItemRemoved;
-
-		/// <summary>
-		///     Event to run when the list is sorted.
-		/// </summary>
-		public event EventHandler? ListSorted;
-
-		/// <summary>
-		///     Event to run when a range of items is added.
-		/// </summary>
-		public event EventHandler<RangeEventArgs<T>>? RangeAdded;
-
-		/// <summary>
-		///     Event to run when a range of items is removed.
-		/// </summary>
-		public event EventHandler<RangeEventArgs<T>>? RangeRemoved;
 
 		//---------------------------------------------------------------
 		//------------------------------------------------------------------

@@ -13,6 +13,40 @@ namespace andrefmello91.EList
 		where T : IEquatable<T>, IComparable<T>
 	{
 
+		#region Events
+
+		/// <summary>
+		///     Event to run when the list count changes.
+		/// </summary>
+		event EventHandler<CountChangedEventArgs> CountChanged;
+
+		/// <summary>
+		///     Event to run when an item is added.
+		/// </summary>
+		event EventHandler<ItemEventArgs<T>> ItemAdded;
+
+		/// <summary>
+		///     Event to run when an item is removed.
+		/// </summary>
+		event EventHandler<ItemEventArgs<T>> ItemRemoved;
+
+		/// <summary>
+		///     Event to run when the list is sorted.
+		/// </summary>
+		event EventHandler ListSorted;
+
+		/// <summary>
+		///     Event to run when a range of items is added.
+		/// </summary>
+		event EventHandler<RangeEventArgs<T>> RangeAdded;
+
+		/// <summary>
+		///     Event to run when a range of items is removed.
+		/// </summary>
+		event EventHandler<RangeEventArgs<T>> RangeRemoved;
+
+		#endregion
+
 		#region Methods
 
 		/// <returns>
@@ -63,36 +97,6 @@ namespace andrefmello91.EList
 		void Sort(IComparer<T> comparer, bool raiseEvents = true);
 
 		#endregion
-
-		/// <summary>
-		///     Event to run when the list count changes.
-		/// </summary>
-		event EventHandler<CountChangedEventArgs> CountChanged;
-
-		/// <summary>
-		///     Event to run when an item is added.
-		/// </summary>
-		event EventHandler<ItemEventArgs<T>> ItemAdded;
-
-		/// <summary>
-		///     Event to run when an item is removed.
-		/// </summary>
-		event EventHandler<ItemEventArgs<T>> ItemRemoved;
-
-		/// <summary>
-		///     Event to run when a range of items is added.
-		/// </summary>
-		event EventHandler<RangeEventArgs<T>> RangeAdded;
-
-		/// <summary>
-		///     Event to run when a range of items is removed.
-		/// </summary>
-		event EventHandler<RangeEventArgs<T>> RangeRemoved;
-
-		/// <summary>
-		///     Event to run when the list is sorted.
-		/// </summary>
-		event EventHandler ListSorted;
 
 		//---------------------------------------------------------------
 		//------------------------------------------------------------------
