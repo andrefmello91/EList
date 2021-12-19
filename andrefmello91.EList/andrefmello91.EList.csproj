@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
-        <Version>1.0.3</Version>
+        <Version>1.0.4</Version>
         <LangVersion>default</LangVersion>
         <Authors>andrefmello91</Authors>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -15,8 +15,8 @@
         <PackageId>andrefmello91.EList</PackageId>
         <PackageDescription>Generic list with events and duplicate and null item checking. Based in code by CodeProject: https://www.codeproject.com/Articles/31539/List-With-Events</PackageDescription>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>1.0.3</PackageVersion>
-        <PackageReleaseNotes>Updated process to collection creation.</PackageReleaseNotes>
+        <PackageVersion>1.0.4</PackageVersion>
+        <PackageReleaseNotes>Code cleaned.</PackageReleaseNotes>
     </PropertyGroup>
 
 </Project>
