@@ -2,80 +2,85 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace andrefmello91.EList
+namespace andrefmello91.EList;
+
+/// <summary>
+///     Item EventArgs.
+/// </summary>
+public class ItemEventArgs<T> : EventArgs
 {
-	/// <summary>
-	///     Item EventArgs.
-	/// </summary>
-	public class ItemEventArgs<T> : EventArgs
-	{
-		#region Properties
 
-		/// <summary>
-		///     The index of <see cref="Item" />.
-		/// </summary>
-		public int Index { get; set; }
-
-		/// <summary>
-		///     The item.
-		/// </summary>
-		public T Item { get; set; }
-
-		#endregion
-
-		#region Constructors
-
-		//----------------------------------------------------------
-		public ItemEventArgs(T item, int index = -1)
-		{
-			Item  = item;
-			Index = index;
-		}
-
-		#endregion
-	}
+	#region Properties
 
 	/// <summary>
-	///     Range EventArgs.
+	///     The index of <see cref="Item" />.
 	/// </summary>
-	public class RangeEventArgs<T> : EventArgs
-	{
-		#region Properties
-
-		/// <summary>
-		///     The item collection.
-		/// </summary>
-		public List<T> ItemCollection { get; set; }
-
-		#endregion
-
-		#region Constructors
-
-		//----------------------------------------------------------
-		public RangeEventArgs(IEnumerable<T> collection) => ItemCollection = collection.ToList();
-
-		#endregion
-	}
+	public int Index { get; set; }
 
 	/// <summary>
-	///     Count changed EventArgs.
+	///     The item.
 	/// </summary>
-	public class CountChangedEventArgs : EventArgs
+	public T Item { get; set; }
+
+	#endregion
+
+	#region Constructors
+
+	//----------------------------------------------------------
+	public ItemEventArgs(T item, int index = -1)
 	{
-		#region Properties
-
-		/// <summary>
-		///     Number of elements in the list.
-		/// </summary>
-		public int Count { get; set; }
-
-		#endregion
-
-		#region Constructors
-
-		//----------------------------------------------------------
-		public CountChangedEventArgs(int count) => Count = count;
-
-		#endregion
+		Item  = item;
+		Index = index;
 	}
+
+	#endregion
+
+}
+
+/// <summary>
+///     Range EventArgs.
+/// </summary>
+public class RangeEventArgs<T> : EventArgs
+{
+
+	#region Properties
+
+	/// <summary>
+	///     The item collection.
+	/// </summary>
+	public List<T> ItemCollection { get; set; }
+
+	#endregion
+
+	#region Constructors
+
+	//----------------------------------------------------------
+	public RangeEventArgs(IEnumerable<T> collection) => ItemCollection = collection.ToList();
+
+	#endregion
+
+}
+
+/// <summary>
+///     Count changed EventArgs.
+/// </summary>
+public class CountChangedEventArgs : EventArgs
+{
+
+	#region Properties
+
+	/// <summary>
+	///     Number of elements in the list.
+	/// </summary>
+	public int Count { get; set; }
+
+	#endregion
+
+	#region Constructors
+
+	//----------------------------------------------------------
+	public CountChangedEventArgs(int count) => Count = count;
+
+	#endregion
+
 }
