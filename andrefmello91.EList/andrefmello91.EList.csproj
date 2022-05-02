@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
-        <Version>1.0.4</Version>
+        <TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
+        <Version>1.0.5</Version>
         <LangVersion>preview</LangVersion>
         <Authors>andrefmello91</Authors>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -15,8 +15,7 @@
         <PackageId>andrefmello91.EList</PackageId>
         <PackageDescription>Generic list with events and duplicate and null item checking. Based in code by CodeProject: https://www.codeproject.com/Articles/31539/List-With-Events</PackageDescription>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>1.0.4</PackageVersion>
-        <PackageReleaseNotes>Code cleaned.</PackageReleaseNotes>
+        <PackageReleaseNotes>Added support to .NET 6.0.</PackageReleaseNotes>
     </PropertyGroup>
 
 </Project>
