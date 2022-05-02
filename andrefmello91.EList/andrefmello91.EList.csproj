@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
         <Version>1.0.4</Version>
-        <LangVersion>default</LangVersion>
+        <LangVersion>preview</LangVersion>
         <Authors>andrefmello91</Authors>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
